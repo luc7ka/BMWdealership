@@ -9,19 +9,20 @@ int odabirNaIzborniku()
 	int n;
 	system("cls");
 	printf("==============================================================\n");
-	printf("=  Pretraûivanje:                                            =\n");
+	printf("=  Pretra≈æivanje:                                            =\n");
 	printf("======================================================================\n");
 	printf("=  [1]  Model                                                        =\n");
 	printf("=  [2]  Godina proizvodnje                                           =\n");
 	printf("=  [3]  Cijena                                                       =\n");
-	printf("=  [0]  Kilometraûa                                                  =\n");
+	printf("=  [4]  Kilometra≈æa                                                  =\n");
+	printf("=  [0]  Izlaz                                                        =\n");
 	printf("======================================================================\n");
 
 	do {
 		scanf("%d", &n);
-		if (n < 0 || n > 3)
+		if (n < 0 || n > 4)
 			printf("Pogresan unos.\nPokusajte ponovo.\n");
-	} while (n < 0 || n > 3);
+	} while (n < 0 || n > 4);
 
 	return n;
 
