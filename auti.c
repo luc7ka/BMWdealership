@@ -10,7 +10,7 @@ void kreiranjeDatotekeAuti() {
 	if (datAuti == NULL) {
 		datAuti = fopen(ime_dat, "wb");
 		if (datAuti == NULL) {
-			printf("Nije moguce kreirati datoteku auti.bin\n ");
+			printf("Ne mogucnost kreiranja datoteke auti.bin\n ");
 			printf("\nKraj programa\n");
 			exit(EXIT_FAILURE);
 		}
@@ -82,6 +82,9 @@ void unosNovogAuta() {
 				printf("Unesite ime modela\n");
 				getchar();
 				scanf("%29[^\n]", &noviAuto.model);
+				printf("Unesite boju auta\n");
+				getchar();
+				scanf("%29[^\n]", &noviAuto.boja);
 
 				printf("Unesite godinu proizvodnje\n");
 				scanf(" %d", &noviAuto.godina_proizvodnje);
@@ -119,7 +122,9 @@ void unosNovogAuta() {
 				printf("Unesite ime modela\n");
 				getchar();
 				scanf("%29[^\n]", &noviAuto.model);
-
+				printf("Unesite boju auta\n");
+				getchar();
+				scanf("%29[^\n]", &noviAuto.boja);
 				printf("Unesite godinu proizvodnje\n");
 				scanf(" %d", &noviAuto.godina_proizvodnje);
 				printf("Unesite snagu motora auta(u kw)\n");
@@ -148,7 +153,7 @@ void unosNovogAuta() {
 		fclose(datoteka);
 	}
 	free(sviAuti);
-	printf("\nAuto unesen, pritisnite bilo ESC za povratak u izbornik\n");
+	printf("\nAuto unesen,stisnite bilo koju tipku za povratak u izbornik\n");
 	_getch();
 	system("cls");
 }
@@ -163,7 +168,7 @@ void ispisAuta() {
 	}
 	else {
 		for (int i = 0; i < brAuta; i++) {
-			printf("Model: %s\n %s\nGodina proizvodnje: %d ", (auti + i)->model, (auti + i)->godina_proizvodnje);
+			printf("Model: %s\nBoja: %s\nGodina proizvodnje: %d ", (auti + i)->model, (auti + i)->boja, (auti + i)->godina_proizvodnje);
 			printf("\nSnaga motora: %d \nCijena: %d \nID: %d", (auti + i)->snaga_motora, (auti + i)->cijena, (auti + i)->id);
 			printf("\n\n");
 		}
@@ -205,18 +210,21 @@ int brisanjeAuta(int id) {
 						}
 
 						strcpy(temp.model, (auti + j)->model);
+						strcpy(temp.boja, (auti + j)->boja);
 						temp.godina_proizvodnje = (auti + j)->godina_proizvodnje;
 						temp.snaga_motora = (auti + j)->snaga_motora;
 						temp.cijena = (auti + j)->cijena;
 						temp.id = (auti + j)->id;
 
 						strcpy((auti + j)->model, (auti + j + 1)->model);
+						strcpy((auti + j)->boja, (auti + j + 1)->boja);
 						(auti + j)->godina_proizvodnje = (auti + j + 1)->godina_proizvodnje;
 						(auti + j)->snaga_motora = (auti + j + 1)->snaga_motora;
 						(auti + j)->cijena = (auti + j + 1)->cijena;
 						(auti + j)->id = (auti + j + 1)->id;
 
 						strcpy((auti + j + 1)->model, temp.model);
+						strcpy((auti + j + 1)->boja, temp.boja);
 						(auti + j + 1)->godina_proizvodnje = temp.godina_proizvodnje;
 						(auti + j + 1)->snaga_motora = temp.snaga_motora;
 						(auti + j + 1)->cijena = temp.cijena;
@@ -229,6 +237,7 @@ int brisanjeAuta(int id) {
 			if (Pomoc != NULL) {
 				for (i = 0; i < brAuta - 1; i++) {
 					strcpy((Pomoc + i)->model, (auti + i)->model);
+					strcpy((Pomoc + i)->boja, (auti + i)->boja);
 					(Pomoc + i)->godina_proizvodnje = (auti + i)->godina_proizvodnje;
 					(Pomoc + i)->snaga_motora = (auti + i)->snaga_motora;
 					(Pomoc + i)->cijena = (auti + i)->cijena;
