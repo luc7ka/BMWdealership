@@ -4,6 +4,7 @@
 
 typedef struct auti {
 	char model[30];
+	char boja[30];
 	int godina_proizvodnje;
 	int snaga_motora;
 	int cijena;
