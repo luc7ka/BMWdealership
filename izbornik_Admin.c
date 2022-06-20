@@ -8,16 +8,15 @@
 
 void izbornik_Admin() {
 	ADMIN admin = { "admin","admin",1 };
-	ADMIN* admin_pok = &admin;
+
 	int flag = 0;
 	int odabir;
 	int id;
 
-	
 	int idEdit;
 	bool editSuccess;
 
-	while (prijava_Admin(admin_pok) == false && flag < 4) {
+	while (prijava_Admin(&admin) == false && flag < 4) {
 		flag++;
 		if (flag == 3) {
 			printf("Neuspjesno logiranje iskoristeni svi pokusaji!");
