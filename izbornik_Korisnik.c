@@ -184,6 +184,8 @@ void izbornik_Korisnik() {
 			break;
 		case 8:
 			kupnjaAuta();
+			auti = ucitavanjeAuta(auti);
+			brAuta = ucitavanjeBrojaAuta();
 			break;
 
 		case 0:
