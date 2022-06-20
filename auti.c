@@ -175,119 +175,6 @@ void ispisAuta() {
 	}
 }
 
-
-bool editAutomobila(int tempId) {
-	FILE* fajl = NULL;
-	
-	AUTO* sviAutomobili = NULL;
-	
-	AUTO* tempAutomobili = NULL;
-	
-	sviAutomobili = ucitavanjeAuta(sviAutomobili);
-
-	
-	if (sviAutomobili == NULL) {
-		return false;
-	}
-	else {
-		
-
-		AUTO* tempAuto = NULL;
-		
-		int brElem = ucitavanjeBrojaAuta();
-
-		
-		for (int i = 0; i < brElem; i++) {
-			
-			int tmpId = sviAutomobili[i].id;
-
-			
-			if (tempId == tmpId) {
-				
-				tempAuto = &sviAutomobili[i];
-				
-				printf("Pronadjen auto sa ID-om: %d\n", tempId);
-				
-				printf("Model pronadjenog automobila: %s\n", (*tempAuto).model);
-
-				
-				break;
-			}
-		}
-
-		
-		if (tempAuto != NULL) {
-			
-			printf("\nOld value: %d", (*tempAuto).godina_proizvodnje);
-			printf("\nUnesite editovanu godinu proizvodnje: ");
-			scanf(" %d", &(*tempAuto).godina_proizvodnje);
-			getchar();
-			printf("Nova godina proizvodnje je: %d\n", (*tempAuto).godina_proizvodnje);
-
-			printf("\nOld value: %s", (*tempAuto).boja);
-			printf("\nUnesite editovanu boju: ");
-			scanf(" %[^\n]%*c", (*tempAuto).boja);
-			printf("Nova boja je: %s\n", (*tempAuto).boja);
-
-			printf("\nOld value: %d", (*tempAuto).cijena);
-			printf("\nUnesite editovanu --price--: ");
-			scanf(" %d", &(*tempAuto).cijena);
-			getchar();
-			printf("Nova --price-- je: %d\n", (*tempAuto).cijena);
-
-			printf("\nOld value: %s", (*tempAuto).model);
-			printf("\nUnesite editovan model: ");
-			scanf(" %[^\n]%*c", (*tempAuto).model);
-			printf("Novi model je: %s\n", (*tempAuto).model);
-
-			printf("\nOld value: %d", (*tempAuto).snaga_motora);
-			printf("\nUnesite editovanu snagu motora: ");
-			scanf(" %d", &(*tempAuto).snaga_motora);
-			getchar();
-			printf("Nova snaga motora je: %d\n", (*tempAuto).snaga_motora);
-
-			
-			fajl = fopen("auti.bin", "w");
-
-			
-			if (fajl != NULL) {
-				
-				tempAutomobili = (AUTO*)calloc(brElem, sizeof(AUTO));
-
-				
-				if (tempAutomobili != NULL) {
-				
-					for (int i = 0; i < brElem; i++) {
-						strcpy((tempAutomobili + i)->model, (sviAutomobili + i)->model);
-						strcpy((tempAutomobili + i)->boja, (sviAutomobili + i)->boja);
-						(tempAutomobili + i)->godina_proizvodnje = (sviAutomobili + i)->godina_proizvodnje;
-						(tempAutomobili + i)->snaga_motora = (sviAutomobili + i)->snaga_motora;
-						(tempAutomobili + i)->cijena = (sviAutomobili + i)->cijena;
-						(tempAutomobili + i)->id = (sviAutomobili + i)->id;
-						
-					}
-				}
-				
-				fwrite(&brElem, sizeof(int), 1, fajl);
-				rewind(fajl);
-				fseek(fajl, 0, SEEK_END);
-				fwrite(tempAutomobili, sizeof(AUTO), brElem, fajl);
-				fclose(fajl);
-
-				
-				free(sviAutomobili);
-				free(tempAutomobili);
-			}
-		}
-		else {
-			return false;
-		}
-	}
-
-
-	return true;
-}
- 
 int brisanjeAuta(int id) {
 	AUTO* auti = NULL;
 	int brAuta = ucitavanjeBrojaAuta();
@@ -379,3 +266,6 @@ int brisanjeAuta(int id) {
 	}
 	return flag;
 }
+
+
+
