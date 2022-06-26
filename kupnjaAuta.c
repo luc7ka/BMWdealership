@@ -87,4 +87,4 @@ void kupnjaAuta() {
 	printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
 	_getch();
 
-}
+} 
