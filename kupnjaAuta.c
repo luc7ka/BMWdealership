@@ -28,7 +28,7 @@ void kupnjaAuta() {
 
 	for (i = 0; i < brAuta; i++) {
 		if ((auti + i)->id == temp.id) {
-			printf("Je li ovo auto na koji ste mislili:\n\n");
+			printf("Jeste li mislili na ovaj automobil?:\n\n");
 			printf("Model: %s\nBoja: %s\nGodina proizvodnje: %d ", (auti + i)->model, (auti + i)->boja, (auti + i)->godina_proizvodnje);
 			printf("\nSnaga motora: %d \nCijena: %d \nID: %d", (auti + i)->snaga_motora, (auti + i)->cijena, (auti + i)->id);
 			printf("\n\n");
@@ -36,7 +36,7 @@ void kupnjaAuta() {
 		}
 	}
 	if (flag == 0) {
-		printf("Nema auta s tim ID-em");
+		printf("Nema auta s tim ID-om");
 		printf("\n\nPritisnite bilo koju tipku za povratak u izbornik\n");
 		_getch();
 		return;
@@ -55,7 +55,7 @@ void kupnjaAuta() {
 			break;
 		}
 		if (strcmp(da, unos) != 0 || strcmp(ne, unos) != 0) {
-			printf("\nKrivi unos, trebate unjeti 'da' ili 'ne':  ");
+			printf("\nKrivi unos, unesite 'da' ili 'ne':  ");
 		}
 	} while (1);
 
@@ -63,7 +63,7 @@ void kupnjaAuta() {
 
 	datoteka = fopen(ime_dat, "a");
 	if (datoteka == NULL) {
-		printf("Ne mogucnost otvaranja datoteke\n ");
+		printf("Nije moguce otvoriti datoteku\n ");
 		exit(EXIT_FAILURE);
 	}
 	else {
@@ -87,4 +87,4 @@ void kupnjaAuta() {
 	printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
 	_getch();
 
-} 
+}
