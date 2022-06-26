@@ -10,12 +10,12 @@ void kreiranjeDatotekeAuti() {
 	if (datAuti == NULL) {
 		datAuti = fopen(ime_dat, "wb");
 		if (datAuti == NULL) {
-			printf("Ne mogucnost kreiranja datoteke auti.bin\n ");
+			printf("Nije moguce kreirati datoteku auti.bin\n ");
 			printf("\nKraj programa\n");
 			exit(EXIT_FAILURE);
 		}
 		else {
-			printf("Uspjesno kreirana datoteka auti.bin\n");
+			printf("Uspjesno ste kreirali datoteku auti.bin\n");
 			fclose(datAuti);
 		}
 	}
@@ -55,7 +55,7 @@ int ucitavanjeBrojaAuta() {
 		fclose(datoteka);
 	}
 	else {
-		printf("Nemoguce je saznati koliki je broj auta u datoteci!\n");
+		printf("Nije moguce saznati koliki je broj auta u datoteci\n");
 		printf("\nKraj programa\n");
 		exit(EXIT_FAILURE);
 	}
@@ -74,7 +74,7 @@ void unosNovogAuta() {
 		datoteka = fopen(ime_dat, "rb+");
 		if (datoteka != NULL) {
 			if (datoteka == NULL) {
-				printf("Ne mogucnost kreiranja datoteke auti.bin\n ");
+				printf("Nije moguce kreirati datoteku auti.bin\n ");
 				printf("\nKraj programa\n");
 				exit(EXIT_FAILURE);
 			}
@@ -88,11 +88,11 @@ void unosNovogAuta() {
 
 				printf("Unesite godinu proizvodnje\n");
 				scanf(" %d", &noviAuto.godina_proizvodnje);
-				printf("Unesite snagu motora auta(u kw)\n");
+				printf("Unesite snagu motora auta (u kw)\n");
 				scanf(" %d", &noviAuto.snaga_motora);
 				printf("Unesite cijenu auta(u kn)\n");
 				scanf(" %d", &noviAuto.cijena);
-				printf("Unesite id koji je razlicit od ostalih:\n");
+				printf("Unesite ID koji je razlicit od ostalih:\n");
 				scanf(" %d", &noviAuto.id);
 
 				brojAuta += 1;
@@ -107,14 +107,14 @@ void unosNovogAuta() {
 	else {
 		sviAuti = ucitavanjeAuta(sviAuti);
 		if (sviAuti == NULL) {
-			printf("Ne mogucnost zauzimanja memorije\n ");
+			printf("Nije moguce zauzeti memoriju\n ");
 			printf("\nKraj programa\n");
 			exit(EXIT_FAILURE);
 		}
 		else {
 			datoteka = fopen(ime_dat, "rb+");
 			if (datoteka == NULL) {
-				printf("Ne mogucnost otvaranja datoteke auti.bin\n ");
+				printf("Nije moguce otvoriti datoteku auti.bin\n ");
 				printf("\nKraj programa\n");
 				exit(EXIT_FAILURE);
 			}
@@ -127,13 +127,13 @@ void unosNovogAuta() {
 				scanf("%29[^\n]", &noviAuto.boja);
 				printf("Unesite godinu proizvodnje\n");
 				scanf(" %d", &noviAuto.godina_proizvodnje);
-				printf("Unesite snagu motora auta(u kw)\n");
+				printf("Unesite snagu motora auta (u kw)\n");
 				scanf(" %d", &noviAuto.snaga_motora);
-				printf("Unesite cijenu auta(u kn)\n");
+				printf("Unesite cijenu auta (u kn)\n");
 				scanf(" %d", &noviAuto.cijena);
 				do {
 					flag = 1;
-					printf("Unesite id koji je razlicit od ostalih:\n");
+					printf("Unesite ID koji je razlicit od ostalih:\n");
 					scanf(" %d", &noviAuto.id);
 					for (i = 0; i < brojAuta; i++) {
 						if (noviAuto.id == sviAuti[i].id) {
@@ -153,7 +153,7 @@ void unosNovogAuta() {
 		fclose(datoteka);
 	}
 	free(sviAuti);
-	printf("\nAuto unesen,stisnite bilo koju tipku za povratak u izbornik\n");
+	printf("\nAuto unesen, stisnite bilo koju tipku za povratak u izbornik\n");
 	_getch();
 	system("cls");
 }
@@ -216,30 +216,30 @@ bool editAutomobila(int tempId) {
 	
 		if (tempAuto != NULL) {
 	
-			printf("\nOld value: %d", (*tempAuto).godina_proizvodnje);
-			printf("\nUnesite editovanu godinu proizvodnje: ");
+			printf("\nPrethodna godina proizvodnje: %d", (*tempAuto).godina_proizvodnje);
+			printf("\nUnesite novu godinu proizvodnje: ");
 			scanf(" %d", &(*tempAuto).godina_proizvodnje);
 			getchar();
 			printf("Nova godina proizvodnje je: %d\n", (*tempAuto).godina_proizvodnje);
 
-			printf("\nOld value: %s", (*tempAuto).boja);
-			printf("\nUnesite editovanu boju: ");
+			printf("\nPrethodna boja automobila: %s", (*tempAuto).boja);
+			printf("\nUnesite novu boju: ");
 			scanf(" %[^\n]%*c", (*tempAuto).boja);
 			printf("Nova boja je: %s\n", (*tempAuto).boja);
 
-			printf("\nOld value: %d", (*tempAuto).cijena);
-			printf("\nUnesite editovanu --price--: ");
+			printf("\nPrethodna cijena automobila: %d", (*tempAuto).cijena);
+			printf("\nUnesite novu cijenu: ");
 			scanf(" %d", &(*tempAuto).cijena);
 			getchar();
-			printf("Nova --price-- je: %d\n", (*tempAuto).cijena);
+			printf("Nova cijena je: %d\n", (*tempAuto).cijena);
 
-			printf("\nOld value: %s", (*tempAuto).model);
-			printf("\nUnesite editovan model: ");
+			printf("\nPrethodni model automobila: %s", (*tempAuto).model);
+			printf("\nUnesite novi model: ");
 			scanf(" %[^\n]%*c", (*tempAuto).model);
 			printf("Novi model je: %s\n", (*tempAuto).model);
 
-			printf("\nOld value: %d", (*tempAuto).snaga_motora);
-			printf("\nUnesite editovanu snagu motora: ");
+			printf("\nPrethodna snaga motora: %d", (*tempAuto).snaga_motora);
+			printf("\nUnesite novu snagu motora: ");
 			scanf(" %d", &(*tempAuto).snaga_motora);
 			getchar();
 			printf("Nova snaga motora je: %d\n", (*tempAuto).snaga_motora);
@@ -302,13 +302,13 @@ int brisanjeAuta(int id) {
 	brisanje.id = id;
 
 	if (brAuta == 0) {
-		printf("Ne postoji ni jedan automobil u datoteci te se ova funkcija ne može izvršiti.\n");
+		printf("Ne postoji niti jedan automobil u datoteci, ova funkcija se ne moze izvrsiti.\n");
 		return 0;
 	}
 	else {
 		auti = ucitavanjeAuta(auti);
 		if (auti == NULL) {
-			printf("Nemoguce je procitati proizovde iz datoteke\n");
+			printf("Nije moguce procitati proizvode iz datoteke.\n");
 			_getch();
 			exit(EXIT_FAILURE);
 		}
@@ -378,6 +378,3 @@ int brisanjeAuta(int id) {
 	}
 	return flag;
 }
-
-
-
