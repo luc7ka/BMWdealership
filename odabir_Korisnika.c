@@ -32,7 +32,7 @@ int krajPrograma(void) {
 	char* zavrsetak = "da";
 	char unos[3];
 	printf("\nJeste li sigurni da zelite izaci iz programa?\n");
-	printf("Ako ste sigurni onda unesite 'da' \nAko zelite i dalje nastaviti koristiti program unesite 'ne' i biti ce te vraceni u izbornik\n");
+	printf("Ako ste sigurni onda unesite 'da' \nAko zelite i dalje nastaviti koristiti program unesite 'ne' i biti cete vraceni u izbornik\n");
 	do {
 		scanf(" %2s", &unos);
 		if (strcmp(zavrsetak, unos) == 0) {
