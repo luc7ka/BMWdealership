@@ -9,7 +9,7 @@ bool prijava_Admin(ADMIN* admin_pok) {
 	ADMIN unos;
 	printf("Unesi korisnicko ime:\n  ");
 	scanf("%s", &unos.korisnicko_ime);
-	printf("Unesi Lozinku:\n  ");
+	printf("Unesi lozinku:\n  ");
 	scanf("%s", &unos.lozinka);
 	if (strcmp(admin_pok->korisnicko_ime, unos.korisnicko_ime) == 0 && strcmp(admin_pok->lozinka, unos.lozinka) == 0)
 		return true;
