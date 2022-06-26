@@ -19,16 +19,16 @@ void izbornik_Korisnik() {
 
 	do {
 		system("cls");
-		printf("Unesite koju radnju zelite da se izvrsi:\n");
-		printf("1)ispis svih auta\n");
-		printf("2)Ispis svih auta sortiranih po cijeni uzlazno\n");
-		printf("3)Ispis svih auta sortiranih po cijeni silazno\n");
+		printf("Unesite koju radnju zelite izvrsiti:\n");
+		printf("1)Ispis svih auta\n");
+		printf("2)Ispis svih auta sortiranih po cijeni - uzlazno\n");
+		printf("3)Ispis svih auta sortiranih po cijeni - silazno\n");
 		printf("4)Ispis auta vece snage motora od navedenog\n");
 		printf("5)Pretraga auta po modelu\n");
 		printf("6)Pretraga auta po boji\n");
 		printf("7)Ispis auta u tekstualnoj datoteci (katalog.txt)\n");
 		printf("8)Kupnja auta\n");
-		printf("0)izlaz iz programa\n");
+		printf("0)Izlaz iz programa\n");
 
 		scanf("%d", &odabir);
 
@@ -125,7 +125,7 @@ void izbornik_Korisnik() {
 				}
 			}
 			if (flag == 0 && i == brAuta - 1) {
-				printf("Trenutacno nema auta te ili vece snage motora\n");
+				printf("Trenutno nema automobila zadane ili vece snage motora\n");
 			}
 			printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
 			_getch();
@@ -160,7 +160,7 @@ void izbornik_Korisnik() {
 				}
 			}
 			if (flag == 0) {
-				printf("Trenutacno nema auta zeljene boje\n");
+				printf("Trenutno nema auta zeljene boje\n");
 			}
 			printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
 			_getch();
@@ -168,7 +168,7 @@ void izbornik_Korisnik() {
 		case 7:
 			datoteka = fopen(ime_dat, "w");
 			if (datoteka == NULL) {
-				printf("Ne mogucnost otvaranja datoteke\n ");
+				printf("Nije moguce otvoriti datoteku\n ");
 				exit(EXIT_FAILURE);
 			}
 			else {
@@ -176,7 +176,7 @@ void izbornik_Korisnik() {
 					fprintf(datoteka, "Model: %s\nBoja: %s\nGodina proizvodnje: %d ", (auti + i)->model, (auti + i)->boja, (auti + i)->godina_proizvodnje);
 					fprintf(datoteka, "\nSnaga motora: %d \nCijena: %d \nID: %d\n\n", (auti + i)->snaga_motora, (auti + i)->cijena, (auti + i)->id);
 				}
-				printf("Preuzmite datoeku s zeljenim podatcima(katalog.txt).\n");
+				printf("Preuzmite datoteku sa zeljenim podatcima (katalog.txt).\n");
 				fclose(datoteka);
 			}
 			printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
