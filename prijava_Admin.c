@@ -16,3 +16,4 @@ bool prijava_Admin(ADMIN* admin_pok) {
 	else
 		return false;
 }
+ 
