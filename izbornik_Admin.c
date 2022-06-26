@@ -19,22 +19,23 @@ void izbornik_Admin() {
 	while (prijava_Admin(&admin) == false && flag < 4) {
 		flag++;
 		if (flag == 3) {
-			printf("Neuspjesno logiranje iskoristeni svi pokusaji!");
+			printf("Neuspjesno logiranje, iskoristili ste sve pokusaje!");
 			return;
 		}
 		system("cls");
-		printf("Pogresno uneseno koristicko ime ili lozinka pokusaj ponovo: \n");
+		printf("Pogresno uneseno korisnicko ime ili lozinka. \n");
+		printf("Pokusaj ponovno: \n");
 	}
 	system("cls");
-	printf("Uspjesa prijava.\n");
+	printf("Uspjesna prijava.\n");
 
 	do {
 		system("cls");
-		printf("Unesite koju radnju zelite da se izvrsi:\n");
+		printf("Unesite koju radnju zelite izvrsiti:\n");
 		printf("1)dodavanje auta\n");
 		printf("2)brisanje auta\n");
 		printf("3)ispis svih auta\n");
-		printf("4)edit postojeceg automobila\n");
+		printf("4)uredjivanje postojeceg automobila\n");
 		printf("0)izlaz iz programa\n");
 
 		scanf("%d", &odabir);
@@ -46,11 +47,11 @@ void izbornik_Admin() {
 			break;
 		case 2:
 			system("cls");
-			printf("Unesite id automobila kojeg zelite obrisati: \n");
+			printf("Unesite ID automobila kojeg zelite obrisati: \n");
 			scanf(" %d", &id);
 			int stanje = brisanjeAuta(id);
 			if (stanje == 1) {
-				printf("Uspjesno izbrisan trazeni proizvid\n");
+				printf("Uspjesno izbrisan trazeni proizvod\n");
 			}
 			if (stanje == 0) {
 				printf("Neuspjesno obrisan proizvod");
@@ -67,15 +68,15 @@ void izbornik_Admin() {
 			
 		case 4:
 			system("cls");
-			printf("Unesite id automobila za edit: ");
+			printf("Unesite ID automobila za uredjivanje: ");
 			scanf(" %d", &idEdit);
 			
 			editSuccess = editAutomobila(idEdit);
 			if (editSuccess == true) {
-				printf("Car (ID: %d) successfully edited", idEdit);
+				printf("Automobil (ID: %d) uspjesno uredjen", idEdit);
 			}
 			else {
-				printf("No Car with given ID");
+				printf("Ne postoji automobil sa trazenim ID-om");
 			}
 			
 			_getch();
