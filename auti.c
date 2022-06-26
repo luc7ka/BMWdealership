@@ -267,5 +267,3 @@ int brisanjeAuta(int id) {
 	return flag;
 }
 
-
-
