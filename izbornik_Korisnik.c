@@ -14,7 +14,7 @@ void izbornik_Korisnik() {
 	AUTO temp;
 	auti = ucitavanjeAuta(auti);
 	FILE* datoteka;
-	char* ime_dat = "auti.txt";
+	char* ime_dat = "katalog.txt";
 
 
 	do {
@@ -26,7 +26,7 @@ void izbornik_Korisnik() {
 		printf("4)Ispis auta vece snage motora od navedenog\n");
 		printf("5)Pretraga auta po modelu\n");
 		printf("6)Pretraga auta po boji\n");
-		printf("7)Ispis auta u tekstualnoj datoteci (auti.txt)\n");
+		printf("7)Ispis auta u tekstualnoj datoteci (katalog.txt)\n");
 		printf("8)Kupnja auta\n");
 		printf("0)izlaz iz programa\n");
 
@@ -176,7 +176,7 @@ void izbornik_Korisnik() {
 					fprintf(datoteka, "Model: %s\nBoja: %s\nGodina proizvodnje: %d ", (auti + i)->model, (auti + i)->boja, (auti + i)->godina_proizvodnje);
 					fprintf(datoteka, "\nSnaga motora: %d \nCijena: %d \nID: %d\n\n", (auti + i)->snaga_motora, (auti + i)->cijena, (auti + i)->id);
 				}
-				printf("Preuzmite datoeku s zeljenim podatcima(proizvodi.txt).\n");
+				printf("Preuzmite datoeku s zeljenim podatcima(katalog.txt).\n");
 				fclose(datoteka);
 			}
 			printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
