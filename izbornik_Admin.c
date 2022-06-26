@@ -1,198 +1,91 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include "header.h"
 
-void izbornik_Korisnik() {
-	int odabir;
-	int i, j;
-	int flag = 0;
-	int brAuta = ucitavanjeBrojaAuta();
-	AUTO* auti = NULL;
-	AUTO temp;
-	auti = ucitavanjeAuta(auti);
-	FILE* datoteka;
-	char* ime_dat = "auti.txt";
 
+
+
+void izbornik_Admin() {
+	ADMIN admin = { "admin","admin",1 };
+
+	int flag = 0;
+	int odabir;
+	int id;
+
+	int idEdit;
+	bool editSuccess;
+
+	while (prijava_Admin(&admin) == false && flag < 4) {
+		flag++;
+		if (flag == 3) {
+			printf("Neuspjesno logiranje iskoristeni svi pokusaji!");
+			return;
+		}
+		system("cls");
+		printf("Pogresno uneseno koristicko ime ili lozinka pokusaj ponovo: \n");
+	}
+	system("cls");
+	printf("Uspjesa prijava.\n");
 
 	do {
 		system("cls");
 		printf("Unesite koju radnju zelite da se izvrsi:\n");
-		printf("1)ispis svih auta\n");
-		printf("2)Ispis svih auta sortiranih po cijeni uzlazno\n");
-		printf("3)Ispis svih auta sortiranih po cijeni silazno\n");
-		printf("4)Ispis auta vece snage motora od navedenog\n");
-		printf("5)Pretraga auta po modelu\n");
-		printf("6)Pretraga auta po boji\n");
-		printf("7)Ispis auta u tekstualnoj datoteci (auti.txt)\n");
-		printf("8)Kupnja auta\n");
+		printf("1)dodavanje auta\n");
+		printf("2)brisanje auta\n");
+		printf("3)ispis svih auta\n");
+		printf("4)edit postojeceg automobila\n");
 		printf("0)izlaz iz programa\n");
 
 		scanf("%d", &odabir);
 
-		system("cls");
-
 		switch (odabir) {
 		case 1:
-			ispisAuta();
-			printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
-			_getch();
+			system("cls");
+			unosNovogAuta();
 			break;
 		case 2:
-			for (i = 0; i < brAuta - 1; i++) {
-				for (j = 0; j < brAuta - 1 - i; j++) {
-					if ((auti + j + 1)->cijena < (auti + j)->cijena) {
-						strcpy(temp.model, (auti + j)->model);
-						strcpy(temp.boja, (auti + j)->boja);
-						temp.godina_proizvodnje = (auti + j)->godina_proizvodnje;
-						temp.snaga_motora = (auti + j)->snaga_motora;
-						temp.cijena = (auti + j)->cijena;
-						temp.id = (auti + j)->id;
-
-						strcpy((auti + j)->model, (auti + j + 1)->model);
-						strcpy((auti + j)->boja, (auti + j + 1)->boja);
-						(auti + j)->godina_proizvodnje = (auti + j + 1)->godina_proizvodnje;
-						(auti + j)->snaga_motora = (auti + j + 1)->snaga_motora;
-						(auti + j)->cijena = (auti + j + 1)->cijena;
-						(auti + j)->id = (auti + j + 1)->id;
-
-						strcpy((auti + j + 1)->model, temp.model);
-						strcpy((auti + j + 1)->boja, temp.boja);
-						(auti + j + 1)->godina_proizvodnje = temp.godina_proizvodnje;
-						(auti + j + 1)->snaga_motora = temp.snaga_motora;
-						(auti + j + 1)->cijena = temp.cijena;
-						(auti + j + 1)->id = temp.id;
-					}
-				}
+			system("cls");
+			printf("Unesite id automobila kojeg zelite obrisati: \n");
+			scanf(" %d", &id);
+			int stanje = brisanjeAuta(id);
+			if (stanje == 1) {
+				printf("Uspjesno izbrisan trazeni proizvid\n");
 			}
-			printf("Popis je sortiran od manje cijene prema vecoj\n\n");
-			for (i = 0; i < brAuta; i++) {
-				printf("Model: %s\nBoja: %s\nGodina proizvodnje: %d ", (auti + i)->model, (auti + i)->boja, (auti + i)->godina_proizvodnje);
-				printf("\nSnaga motora: %d \nCijena: %d \nID: %d", (auti + i)->snaga_motora, (auti + i)->cijena, (auti + i)->id);
-				printf("\n\n");
+			if (stanje == 0) {
+				printf("Neuspjesno obrisan proizvod");
 			}
 			printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
 			_getch();
 			break;
 		case 3:
-			for (i = 0; i < brAuta - 1; i++) {
-				for (j = 0; j < brAuta - 1 - i; j++) {
-					if ((auti + j + 1)->cijena > (auti + j)->cijena) {
-						strcpy(temp.model, (auti + j)->model);
-						strcpy(temp.boja, (auti + j)->boja);
-						temp.godina_proizvodnje = (auti + j)->godina_proizvodnje;
-						temp.snaga_motora = (auti + j)->snaga_motora;
-						temp.cijena = (auti + j)->cijena;
-						temp.id = (auti + j)->id;
-
-						strcpy((auti + j)->model, (auti + j + 1)->model);
-						strcpy((auti + j)->boja, (auti + j + 1)->boja);
-						(auti + j)->godina_proizvodnje = (auti + j + 1)->godina_proizvodnje;
-						(auti + j)->snaga_motora = (auti + j + 1)->snaga_motora;
-						(auti + j)->cijena = (auti + j + 1)->cijena;
-						(auti + j)->id = (auti + j + 1)->id;
-
-						strcpy((auti + j + 1)->model, temp.model);
-						strcpy((auti + j + 1)->boja, temp.boja);
-						(auti + j + 1)->godina_proizvodnje = temp.godina_proizvodnje;
-						(auti + j + 1)->snaga_motora = temp.snaga_motora;
-						(auti + j + 1)->cijena = temp.cijena;
-						(auti + j + 1)->id = temp.id;
-					}
-				}
-			}
-			printf("Popis je sortiran od vece cijene prema manjoj\n\n");
-			for (i = 0; i < brAuta; i++) {
-				printf("Model: %s\nBoja: %s\nGodina proizvodnje: %d ", (auti + i)->model, (auti + i)->boja, (auti + i)->godina_proizvodnje);
-				printf("\nSnaga motora: %d \nCijena: %d \nID: %d", (auti + i)->snaga_motora, (auti + i)->cijena, (auti + i)->id);
-				printf("\n\n");
-			}
+			system("cls");
+			ispisAuta();
 			printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
 			_getch();
 			break;
+			
 		case 4:
-			printf("Unesite snagu motora:\n");
-			scanf("%d", &temp.snaga_motora);
-			printf("\n");
-			for (i = 0; i < brAuta; i++) {
-				if ((auti + i)->snaga_motora > temp.snaga_motora) {
-					printf("Model: %s\nBoja: %s\nGodina proizvodnje: %d ", (auti + i)->model, (auti + i)->boja, (auti + i)->godina_proizvodnje);
-					printf("\nSnaga motora: %d \nCijena: %d \nID: %d", (auti + i)->snaga_motora, (auti + i)->cijena, (auti + i)->id);
-					printf("\n\n");
-					flag = 1;
-				}
-			}
-			if (flag == 0 && i == brAuta - 1) {
-				printf("Trenutacno nema auta te ili vece snage motora\n");
-			}
-			printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
-			_getch();
-			break;
-
-		case 5:
-			printf("Unesite model trazenog auta:\n");
-			scanf(" %29s", &temp.model);
-			for (i = 0; i < brAuta; i++) {
-				if (strcmp((temp.model), (auti + i)->model) == 0) {
-					printf("Model: %s\nBoja: %s\nGodina proizvodnje: %d ", (auti + i)->model, (auti + i)->boja, (auti + i)->godina_proizvodnje);
-					printf("\nSnaga motora: %d \nCijena: %d \nID: %d", (auti + i)->snaga_motora, (auti + i)->cijena, (auti + i)->id);
-					printf("\n\n");
-					flag = 1;
-				}
-			}
-			if (flag == 0) {
-				printf("Trenutacno nema auta tog modela\n");
-			}
-			printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
-			_getch();
-			break;
-		case 6:
-			printf("Unesite boju trazenog auta:\n");
-			scanf(" %29s", &temp.boja);
-			for (i = 0; i < brAuta; i++) {
-				if (strcmp((temp.boja), (auti + i)->boja) == 0) {
-					printf("Model: %s\nBoja: %s\nGodina proizvodnje: %d ", (auti + i)->model, (auti + i)->boja, (auti + i)->godina_proizvodnje);
-					printf("\nSnaga motora: %d \nCijena: %d \nID: %d", (auti + i)->snaga_motora, (auti + i)->cijena, (auti + i)->id);
-					printf("\n\n");
-					flag = 1;
-				}
-			}
-			if (flag == 0) {
-				printf("Trenutacno nema auta zeljene boje\n");
-			}
-			printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
-			_getch();
-			break;
-		case 7:
-			datoteka = fopen(ime_dat, "w");
-			if (datoteka == NULL) {
-				printf("Ne mogucnost otvaranja datoteke\n ");
-				exit(EXIT_FAILURE);
+			system("cls");
+			printf("Unesite id automobila za edit: ");
+			scanf(" %d", &idEdit);
+			
+			editSuccess = editAutomobila(idEdit);
+			if (editSuccess == true) {
+				printf("Car (ID: %d) successfully edited", idEdit);
 			}
 			else {
-				for (i = 0; i < brAuta; i++) {
-					fprintf(datoteka, "Model: %s\nBoja: %s\nGodina proizvodnje: %d ", (auti + i)->model, (auti + i)->boja, (auti + i)->godina_proizvodnje);
-					fprintf(datoteka, "\nSnaga motora: %d \nCijena: %d \nID: %d\n\n", (auti + i)->snaga_motora, (auti + i)->cijena, (auti + i)->id);
-				}
-				printf("Preuzmite datoeku s zeljenim podatcima(katalog.txt).\n");
-				fclose(datoteka);
+				printf("No Car with given ID");
 			}
-			printf("\nPritisnite bilo koju tipku za povratak u izbornik\n");
+			
 			_getch();
 			break;
-		case 8:
-			kupnjaAuta();
-			break;
-
 		case 0:
 			odabir = krajPrograma();
 			if (odabir == 0) {
 				system("cls");
 				printf("Kraj programa, stisnite bilo koju tipku za zavrsetak\n");
 				_getch();
-				system("cls");
 				exit(EXIT_SUCCESS);
 			}
 			else {
@@ -203,5 +96,3 @@ void izbornik_Korisnik() {
 
 	} while (odabir != 0);
 }
-
-
