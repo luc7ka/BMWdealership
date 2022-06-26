@@ -48,4 +48,4 @@ int krajPrograma(void) {
 		}
 	} while (1);
 	return kraj;
-}
+} 
