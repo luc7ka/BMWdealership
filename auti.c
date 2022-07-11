@@ -164,7 +164,7 @@ void ispisAuta() {
 	auti = ucitavanjeAuta(auti);
 
 	if (brAuta == 0) {
-		printf("Trenutacno nema auta za ispis.\n");
+		printf("Trenutno nema auta za ispis.\n");
 	}
 	else {
 		for (int i = 0; i < brAuta; i++) {
